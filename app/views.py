@@ -1,3 +1,4 @@
+import os
 from io import BytesIO
 from pathlib import Path
 
@@ -10,14 +11,16 @@ from rest_framework import status
 from AIproject import settings
 from .serializers import TextToSpeechSerializer
 from openai import OpenAI
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class TextToSpeechView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = TextToSpeechSerializer(data=request.data)
         if serializer.is_valid():
             text = serializer.validated_data['text']
-            client = OpenAI(api_key='sk-proj-bXXAAFJWfd2Bc5RUF61hT3BlbkFJwFWsgAns3347cSeAbCEH')
+            client = OpenAI(api_key=os.environ.get("OPENAI_APIKEY"))
             audio_buffer = bytearray()
 
             with client.audio.speech.with_streaming_response.create(
