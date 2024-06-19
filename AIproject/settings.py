@@ -24,7 +24,10 @@ SECRET_KEY = "django-insecure-ksj#olv_vyl%ndb=v8g!#wx_%)-t#9mk-yws-=n83w8+85_gjf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [
+    'prototype-65oy.onrender.com',
+]
 
 # Application definition
 
@@ -124,3 +127,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+]
